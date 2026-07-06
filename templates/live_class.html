@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Class | EduTutorial</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Edu<span>Live</span></div>
+        <ul class="nav-links">
+            <li><a href="/student_dashboard">Back to Dashboard</a></li>
+            <li><a href="/logout" class="btn-login">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main class="dashboard-container">
+        <div class="video-container">
+            <!-- The Zoom meeting is EMBEDDED here. The student never sees the URL in their address bar -->
+            <iframe src="{{ link }}" allow="camera; microphone; fullscreen"></iframe>
+        </div>
+        <div style="text-align: center; margin-top: 1rem;">
+            <p>You are now in a secure session. Please keep your microphone muted unless called upon.</p>
+        </div>
+    </main>
+</body>
+</html>
