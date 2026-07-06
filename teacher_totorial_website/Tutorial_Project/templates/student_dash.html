@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | EduTutorial</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Edu<span>Tutorial</span></div>
+        <ul class="nav-links">
+            <li><a href="/dashboard">My Courses</a></li>
+            <li><a href="/live" class="live-link">🔴 Live Classes</a></li>
+            <li><a href="/logout" class="btn-login">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main class="dashboard-container">
+        <header class="dash-header">
+            <h1>Welcome back, <span>Student!</span></h1>
+            <p>Continue your learning journey where you left off.</p>
+        </header>
+
+        <!-- LIVE CLASS ALERT -->
+        <div class="live-alert">
+            <div class="alert-content">
+                <span class="live-pulse"></span>
+                <strong>LIVE NOW:</strong> Mathematics - Calculus Chapter 1
+            </div>
+             <a href="/join_live" class="btn-join">Join Class Now</a>
+        </div>
+        <!-- Add this inside your .dashboard-container, ABOVE the courses section -->
+
+<!-- NOTICE BOARD -->
+<div class="notice-board">
+    <h3>📢 Notice Board</h3>
+    <div class="announcements-list">
+        {% for note in announcements %}
+            <div class="note-item">{{ note }}</div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- WEEKLY SCHEDULE -->
+<section class="schedule-section">
+    <h3>📅 Class Schedule</h3>
+    <table class="schedule-table">
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Subject</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in schedule %}
+            <tr>
+                <td>{{ item.day }}</td>
+                <td>{{ item.time }}</td>
+                <td>{{ item.subject }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<!-- VIDEO LIBRARY -->
+<section class="video-library">
+    <h3>🎥 Recorded Lessons</h3>
+    <div class="video-grid">
+        {% for video in videos %}
+        <div class="video-card">
+            <h4>{{ video.title }}</h4>
+            <p>{{ video.subject }}</p>
+            <a href="/join_live?url={{ video.url }}" class="btn-card">Watch Video $\rightarrow$</a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+        <section class="my-courses">
+            <h2>My Enrolled Courses</h2>
+            <div class="course-grid">
+                <div class="course-card">
+                    <h3>Mathematics</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 40%;"></div></div>
+                    <p>40% Completed</p>
+                    <a href="#" class="btn-card">Continue Learning $\rightarrow$</a>
+                </div>
+                <div class="course-card">
+                    <h3>Physics</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 10%;"></div></div>
+                    <p>10% Completed</p>
+                    <a href="#" class="btn-card">Continue Learning $\rightarrow$</a>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
