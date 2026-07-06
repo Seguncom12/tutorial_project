@@ -1,5 +1,5 @@
 /* ============================================================
-   EDUTUTORIAL - MASTER MVP STYLE SHEET
+   EDUTUTORIAL - MASTER MVP STYLE SHEET (v2.0)
    Author: Segun (Software Engineering @ FUTA)
    ============================================================ */
 
@@ -62,7 +62,7 @@ body {
 .btn-secondary:hover { background: #f1f5f9; }
 
 /* ------------------------------------------------------------
-   2. STABLE FLOATING NAVIGATION (The "Paper" Look)
+   2. STABLE FLOATING NAVIGATION (Landing Page)
    ------------------------------------------------------------ */
 .navbar {
     display: flex;
@@ -71,11 +71,9 @@ body {
     padding: 0.6rem 1.5rem;
     background: var(--white);
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    
     position: fixed;
     top: 20px;
     left: 20px;
-    
     min-width: 300px; 
     width: fit-content; 
     border-radius: 12px;
@@ -352,11 +350,15 @@ body {
 .progress { background: var(--primary); height: 100%; border-radius: 10px; }
 
 /* ------------------------------------------------------------
-   6. TUTOR DASHBOARD (ADMIN PANEL)
+   6. TUTOR DASHBOARD - FULLY RESPONSIVE
    ------------------------------------------------------------ */
 .tutor-body { background-color: #f8fafc; }
 
-.tutor-layout { display: flex; min-height: 100vh; width: 100%; }
+.tutor-layout {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
 
 .sidebar {
     width: 260px;
@@ -370,6 +372,7 @@ body {
     flex-direction: column;
     z-index: 1000;
     box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+    transition: var(--transition);
 }
 
 .sidebar-logo {
@@ -448,7 +451,7 @@ body {
 
 .management-section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
 }
 
@@ -486,7 +489,7 @@ body {
 }
 
 /* ------------------------------------------------------------
-   6. SPECIAL PAGES (LIVE CLASS)
+   7. SPECIAL PAGES (LIVE CLASS)
    ------------------------------------------------------------ */
 .video-container {
     position: relative;
@@ -501,7 +504,7 @@ body {
 iframe { width: 100%; height: 100%; border: none; }
 
 /* ------------------------------------------------------------
-   7. FOOTER & ANIMATIONS
+   8. FOOTER & ANIMATIONS
    ------------------------------------------------------------ */
 footer {
     text-align: center;
@@ -523,9 +526,15 @@ footer {
 }
 
 /* ------------------------------------------------------------
-   8. MOBILE RESPONSIVENESS
+   9. MOBILE RESPONSIVENESS (The Fix)
    ------------------------------------------------------------ */
 @media (max-width: 768px) {
+    .navbar {
+        left: 15px;
+        right: 15px;
+        width: auto;
+    }
+
     .menu-toggle { display: block; cursor: pointer; }
     .bar {
         display: block;
@@ -564,8 +573,55 @@ footer {
 }
 
 @media (max-width: 1024px) {
-    .sidebar { width: 80px; }
-    .sidebar-logo, .sidebar-nav span { display: none; }
-    .tutor-main { margin-left: 80px; width: calc(100% - 80px); }
-    .management-section { grid-template-columns: 1fr; }
+    .tutor-layout { flex-direction: column; }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        padding: 1rem;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .sidebar-logo {
+        margin-bottom: 0;
+        border-bottom: none;
+        padding: 0;
+    }
+
+    .sidebar-nav {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+
+    .sidebar-nav li {
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar-nav li a {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .tutor-main {
+        margin-left: 0;
+        width: 100%;
+        padding: 1.5rem;
+    }
+
+    .tutor-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .management-section {
+        grid-template-columns: 1fr;
+    }
 }
