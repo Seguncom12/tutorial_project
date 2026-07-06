@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tutor Panel | EduTutorial</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="tutor-body">
+    <div class="mobile-nav-trigger">
+        <div class="tutor-logo">Edu<span>Tutor</span></div>
+        <div class="menu-toggle" id="tutor-menu-toggle"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+    </div>
+
+    <aside class="sidebar" id="sidebar-drawer">
+        <div class="sidebar-logo">Edu<span>Tutor</span></div>
+        <ul class="sidebar-nav">
+            <li class="active"><a href="#">📊 Dashboard</a></li>
+            <li><a href="#">📚 Courses</a></li>
+            <li><a href="/logout" class="logout-link">Logout</a></li>
+        </ul>
+    </aside>
+
+    <main class="tutor-main">
+        <header class="tutor-header">
+            <h1>Admin Command Center</h1>
+            <div class="tutor-profile"><span>Prof. Segun</span><div class="profile-pic"></div></div>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card"><h3>Students</h3><p class="stat-number">1,240</p></div>
+            <div class="stat-card"><h3>Courses</h3><p class="stat-number">8</p></div>
+        </div>
+
+        <div class="management-section">
+            <div class="manage-card">
+                <h2>🔴 Live Link</h2>
+                <form action="/update_link" method="POST" class="tutor-form">
+                    <input type="url" name="link" placeholder="Paste Zoom/Meet link..." required>
+                    <button type="submit" class="btn-auth">Broadcast Link</button>
+                </form>
+            </div>
+            <div class="manage-card">
+                <h2>📢 Notice</h2>
+                <form action="/post_announcement" method="POST" class="tutor-form">
+                    <textarea name="announcement" placeholder="Enter notice..."></textarea>
+                    <button type="submit" class="btn-auth">Post Notice</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script>
+        const toggle = document.querySelector('#tutor-menu-toggle');
+        const drawer = document.querySelector('#sidebar-drawer');
+        toggle.addEventListener('click', () => drawer.classList.toggle('active'));
+        document.addEventListener('click', (e) => { if(!drawer.contains(e.target) && !toggle.contains(e.target)) drawer.classList.remove('active'); });
+    </script>
+</body>
+</html>

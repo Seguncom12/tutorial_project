@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Class | EduTutorial</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Edu<span>Live</span></div>
+        <ul class="nav-links"><li><a href="/student_dashboard">Exit Class</a></li></ul>
+    </nav>
+    <main class="dashboard-container">
+        <div class="video-container">
+            <iframe src="{{ link }}" allow="camera; microphone; fullscreen"></iframe>
+        </div>
+    </main>
+</body>
+</html>

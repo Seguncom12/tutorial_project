@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dash | EduTutorial</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand-area">
+            <div class="logo">Edu<span>Tutorial</span></div>
+            <div class="menu-toggle" id="mobile-menu"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/student_dashboard">My Courses</a></li>
+            <li><a href="/join_live" class="btn-login">Join Live Class</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main class="dashboard-container">
+        <header class="dash-header">
+            <h1>Welcome, <span>Student!</span></h1>
+        </header>
+
+        <div class="live-alert">
+            <div class="alert-content"><span class="live-pulse"></span><strong>LIVE NOW:</strong> Mathematics</div>
+            <a href="/join_live" class="btn-join">Join Now</a>
+        </div>
+
+        <div class="notice-board">
+            <h3>📢 Announcements</h3>
+            <div class="announcements-list">
+                {% for note in announcements %}<div class="note-item">{{ note }}</div>{% endfor %}
+            </div>
+        </div>
+
+        <section class="schedule-section">
+            <h3>📅 Your Timetable</h3>
+            <table class="schedule-table">
+                <thead><tr><th>Day</th><th>Time</th><th>Subject</th></tr></thead>
+                <tbody>
+                    {% for item in schedule %}
+                    <tr><td>{{ item.day }}</td><td>{{ item.time }}</td><td>{{ item.subject }}</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section class="video-library">
+            <h3>🎥 Lesson Library</h3>
+            <div class="course-grid">
+                {% for video in videos %}
+                <div class="course-card">
+                    <h3>{{ video.title }}</h3>
+                    <p>{{ video.subject }}</p>
+                    <a href="/join_live?url={{ video.url }}" class="btn-card">Watch $\rightarrow$</a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+    <script>
+        const menu = document.querySelector('#mobile-menu');
+        const links = document.querySelector('.nav-links');
+        menu.addEventListener('click', () => links.classList.toggle('active'));
+        document.addEventListener('click', (e) => { if(!menu.contains(e.target)) links.classList.remove('active'); });
+    </script>
+</body>
+</html>
